@@ -14,6 +14,7 @@ body {
 .header {
   font-weight: 700;
 }
+
 /* End Header */
 
 /* Dashboard section */
@@ -21,4 +22,15 @@ body {
   background-color: var(--dashboard-color);
 }
 
+.chart-wrapper {
+  max-height: 200px;
+  width: 100%;
+}
+
 /* End Dashboard section */
+@media (min-width: 768px) {
+  .chart-wrapper {
+    max-height: 300px;
+    width: 100%;
+  }
+}
