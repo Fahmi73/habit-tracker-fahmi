@@ -28,6 +28,22 @@ body {
 }
 
 /* End Dashboard section */
+
+/* ADD Task Button */
+.plus_Button {
+  height: 70px;
+  width: 70px;
+}
+
+.AddButton {
+  bottom: 40px;
+  right: 40px;
+}
+
+/* End ADD Task Button */
+
+
+/* BreakPoint */
 @media (min-width: 768px) {
   .chart-wrapper {
     max-height: 300px;
