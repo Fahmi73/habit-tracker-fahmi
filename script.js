@@ -61,21 +61,3 @@ addBtn.addEventListener("click", function (event) {
         addTugas.remove();
     });
 });
-
-// addBtn.addEventListener("click", function (event) {
-//     event.preventDefault();
-//     const newTugas = document.createElement("div");
-//     newTugas.className = "kotakTugas col-12 bg-light shadow-sm rounded-4 m-0 p-3";
-//     newTugas.innerHTML = `
-//         <div class="d-flex">
-//             <i class="bi bi-check-lg fs-1 text-center text-success"></i>
-//             <div class="mx-3">
-//                 <p class="mb-0 fs-4 fw-bold">${headerTugas.value}</p>
-//                 <div class="deadlineTugas">
-//                     <p class="mb-0 fs-6 text-muted">${deadlineTugas.value}</p>
-//                 </div>
-//             </div>
-//         </div>
-//     `;
-//     document.querySelector(".row.p-2.gap-3").appendChild(newTugas);
-// });
