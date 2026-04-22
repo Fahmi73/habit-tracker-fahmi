@@ -46,8 +46,8 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 9999;
-  min-width: 300px;
-  max-width: 600px;
+  min-width: 200px;
+  max-width: 400px;
 }
 
 /* End ADD Task Button */
