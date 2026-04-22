@@ -1,12 +1,10 @@
-const headerTugas = document.getElementById("headerTugas");
-const deadlineTugas = document.getElementById("deadlineTugas");
 const addBtn = document.getElementById("addBtn");
 
 addBtn.addEventListener("click", function (event) {
     event.preventDefault();
     const addTugas = document.createElement("form");
     addTugas.innerHTML = `        <div class="position-fixed form-tugas">
-            <div class="row shadow-sm rounded-4 p-0 bg-light position-relative" style="width: 400px;">
+            <div class="row shadow-sm rounded-4 p-0 bg-light position-relative">
                 <div class="col-12 position-absolute top-0 end-0 d-flex justify-content-end p-1">
                     <a href="#" class="btn bg-primary text-white rounded-4 fs-5" id="backBtn" role="button">Back <i
                             class="bi bi-box-arrow-right"></i></a>
