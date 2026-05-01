@@ -35,7 +35,7 @@ body {
   width: 70px;
 }
 
-.AddButton {
+.add-Button {
   bottom: 40px;
   right: 40px;
   z-index: 1000;
@@ -46,12 +46,11 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 9999;
-  min-width: 200px;
+  min-width: 300px;
   max-width: 400px;
 }
 
 /* End ADD Task Button */
-
 
 /* BreakPoint */
 @media (min-width: 768px) {

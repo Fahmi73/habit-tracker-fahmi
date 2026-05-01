@@ -1,8 +1,11 @@
 const addBtn = document.getElementById("addBtn");
+const taskContainer = document.querySelector(".row.p-2.gap-3");
+let Tugas = [];
 
 addBtn.addEventListener("click", function (event) {
     event.preventDefault();
     const addTugas = document.createElement("form");
+    addTugas.id = "addTugas";
     addTugas.innerHTML = `        <div class="position-fixed form-tugas">
             <div class="row shadow-sm rounded-4 p-0 bg-light position-relative">
                 <div class="col-12 position-absolute top-0 end-0 d-flex justify-content-end p-1">
@@ -27,29 +30,23 @@ addBtn.addEventListener("click", function (event) {
     const namaTugasInput = document.getElementById("namaTugas");
     const deadlineTugasInput = document.getElementById("deadlineTugas");
 
-    // Submit Tugas Listener
-    const submitBtn = document.getElementById("submitTugas");
-    submitBtn.addEventListener("click", function (event) {
+    addTugas.addEventListener("submit", function (event) {
         event.preventDefault();
 
 
-        const valueNamaTugas = namaTugasInput.value;
-        const valueDeadlineTugas = deadlineTugasInput.value;
+        const dataTugas = {
+            id: Date.now(),
+            namaTugas: namaTugasInput.value,
+            deadlineTugas: deadlineTugasInput.value,
+            tugasSelesai: false
+        };
 
-        const newTugas = document.createElement("div");
-        newTugas.className = "kotakTugas col-12 bg-light shadow-sm rounded-4 m-0 p-3";
-        newTugas.innerHTML = `
-                           <div class="d-flex">
-                        <i class="bi bi-check-lg fs-1 text-center text-success"></i>
-                        <div class="mx-3">
-                            <p class="mb-0 fs-4 fw-bold" id="headerTugas">${valueNamaTugas}</p>
-                            <div class="deadlineTugas">
-                                <p class="mb-0 fs-6 text-muted" id="deadlineTugas">${valueDeadlineTugas}</p>
-                            </div>
-                        </div>
-                    </div>
-        `;
-        document.querySelector(".row.p-2.gap-3").appendChild(newTugas);
+        Tugas.push(dataTugas);
+
+        addTugas.remove();
+
+        renderTask();
+
     });
 
     // BackButton Listener
@@ -58,4 +55,60 @@ addBtn.addEventListener("click", function (event) {
         event.preventDefault();
         addTugas.remove();
     });
+
+
 });
+
+function renderTask() {
+    taskContainer.innerHTML = "";
+
+    Tugas.forEach(function (tugas) {
+        const newTugas = document.createElement("div");
+        newTugas.className = "kotakTugas col-12 shadow-sm rounded-4 m-0 p-3";
+        newTugas.style.transition = "all 0.3s ease";
+
+
+        if (tugas.tugasSelesai) {
+            newTugas.classList.add("bg-secondary", "opacity-50");
+        } else {
+            newTugas.classList.add("bg-light");
+        }
+
+        newTugas.innerHTML = `
+                    <div class="d-flex align-items-center justify-content-evenly">
+                        <div class="d-flex align-items-center flex-grow-1">
+                            <i class="bi bi-check-lg fs-1 text-center text-success completeIcon ${tugas.tugasSelesai ? 'text-white' : 'text-success'}" style="cursor: pointer;"></i>
+                            <div class="mx-3 w-100">
+                                <p class="mb-0 fs-4 fw-bold headerTugas ${tugas.tugasSelesai ? 'text-decoration-line-through' : ''}">${tugas.namaTugas}</p>
+                                <div class="deadlineTugas">
+                                    <p class="mb-0 fs-6 text-muted deadlineTugas" >${tugas.deadlineTugas}</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <button class="btn btn-danger btn-sm tombolHapus">
+                                <i class="bi bi-trash3"></i>
+                            </button>
+                        </div>
+                    </div>`;
+
+        // Complete Task Listener
+        const completeTaskBtns = newTugas.querySelector(".completeIcon");
+        completeTaskBtns.addEventListener("click", function (event) {
+            tugas.tugasSelesai = !tugas.tugasSelesai;
+            renderTask();
+        });
+
+        const deleteTaskBtns = newTugas.querySelector(".tombolHapus");
+        deleteTaskBtns.addEventListener("click", function (event) {
+            Tugas = Tugas.filter(function (t) {
+                return t.id !== tugas.id;
+            });
+            renderTask();
+        });
+
+        taskContainer.appendChild(newTugas);
+    });
+
+};
